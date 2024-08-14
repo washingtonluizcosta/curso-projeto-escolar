@@ -1,0 +1,16 @@
+<html>
+    <head>
+    </head>
+
+    <body>
+        <form method="POST">
+            {% csrf_token %}
+            E-mail
+            <input type="text" name="usuario" required>
+            Senha
+            <input type="password" name="senha" required>
+
+            <input type="submit">
+        </form>
+    </body>
+<html>

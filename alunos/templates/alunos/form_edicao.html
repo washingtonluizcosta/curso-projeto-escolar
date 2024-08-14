@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Criar Aluno</title>
+    <head>
+
+    <body>
+        <form action="{% url 'editar_aluno' aluno.id %}" method="post">
+            {% csrf_token %}
+          
+            {{ form }}
+
+            <input type="submit" value="Salvar">
+        </form>
+    </body>
+</html>

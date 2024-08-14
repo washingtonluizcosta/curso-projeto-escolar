@@ -1,0 +1,36 @@
+{% extends "alunos/base.html" %}
+
+{% block 'conteudo' %}
+    <h1>Alunos</h1>
+
+    <a href="{% url 'criar_aluno' %}">Novo</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Nome
+                </th>
+                <th>
+                    Nascimento
+                </th>
+                <th>
+                    Ações
+                </th>
+            </tr>
+        <thead>
+    {% for a in alunos %}
+        <tr>
+            <td>
+                {{ a.nome }}
+            </td>
+            <td>
+                {{ a.nascimento }}
+            </td>
+            <td>
+                <a href="{% url 'detalhe_aluno' a.id %}">Detalhes</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

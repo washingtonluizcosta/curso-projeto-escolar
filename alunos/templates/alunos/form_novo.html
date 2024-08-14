@@ -1,0 +1,21 @@
+{% extends "alunos/base.html" %}
+
+{% block 'titulo' %} Criar Aluno {% endblock %}
+
+{% block 'conteudo' %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form action="{% url 'criar_aluno' %}" method="post">
+        {% csrf_token %}
+        
+        {{ form }}
+
+        <input type="submit" value="Salvar">
+    </form>
+{% endblock %}

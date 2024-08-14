@@ -1,0 +1,17 @@
+{% extends "alunos/base.html" %}
+
+{% block 'titulo' %} Detalhes do Aluno {{ aluno.nome }} {% endblock %}
+
+{% block 'conteudo' %}
+    <h1>Detalhe</h1>
+
+    <h2>Sobre {{ aluno.nome }}</h2>
+
+    {{ aluno.sobre|default_if_none:"" }}
+
+    <br>
+
+    <a href="{% url 'inicial' %}">Voltar</a>
+    <a href="{% url 'editar_aluno' aluno.id %}">Editar</a>
+    <a href="{% url 'excluir_aluno' aluno.id %}">Excluir</a>
+{% endblock %}

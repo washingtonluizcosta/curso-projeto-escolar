@@ -1,0 +1,16 @@
+{% load static %}
+<html>
+    <head>
+        <title>{% block 'titulo' %}Sistema Escolar{% endblock %}</title>
+        <link rel="stylesheet" href="{% static  'alunos/estilo.css' %}">
+    </head>
+    <body>
+
+        {% block 'conteudo' %}
+        {% endblock %}
+
+        <footer>
+            Curso de Programação
+        </footer>
+    </body>
+</html>
