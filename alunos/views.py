@@ -1,33 +1,13 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
 from .models import Aluno
 from .forms import AlunoForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 
-
-def do_login(request):
-    if request.POST:
-        username = request.POST['usuario']
-        password = request.POST['senha']
-        user = authenticate(request, username=username, password=password)
-        print(user)
-        if user is not None:
-            login(request, user)
-            return inicial(request)
-
-    return render(request, 'alunos/login.html')
-
-def logout_view(request):
-    logout(request)
-    return redirect('login')
-
-
 @login_required
-def inicial(request):
-    
+def listar_alunos(request):
     alunos = Aluno.objects.all().order_by('nome')
     # select * from alunos_aluno;
     return render(request, 'alunos/index.html', context={'alunos': alunos})
@@ -46,7 +26,7 @@ def excluir_aluno(request, pk):
     aluno.delete()
     # delete from alunos_aluno where id = pk
     
-    return inicial(request)
+    return listar_alunos(request)
 
 @login_required
 def criar_aluno(request):
@@ -58,7 +38,7 @@ def criar_aluno(request):
             aluno_form.save()
             # insert into alunos_aluno (nome, nascimento, sobre) values ();
     
-            return inicial(request)
+            return listar_alunos(request)
         else:
             messages.error(request, aluno_form.errors)
     
@@ -76,7 +56,7 @@ def editar_aluno(request, pk):
             aluno_form.save()
             # insert into alunos_aluno (nome, nascimento, sobre) values ();
     
-            return inicial(request)
+            return listar_alunos(request)
     
     form = AlunoForm(instance=aluno)
     return render(request, 'alunos/form_edicao.html', context={'form': form, 'aluno': aluno})
