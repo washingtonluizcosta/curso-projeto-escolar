@@ -1,5 +1,4 @@
 from django.shortcuts import redirect, render
-from django.contrib.auth.models import User
 from .models import Aluno
 from .forms import AlunoForm
 from django.contrib import messages
