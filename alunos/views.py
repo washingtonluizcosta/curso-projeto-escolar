@@ -36,7 +36,8 @@ def criar_aluno(request):
         if aluno_form.is_valid():
             aluno_form.save()
             # insert into alunos_aluno (nome, nascimento, sobre) values ();
-    
+            
+
             return listar_alunos(request)
         else:
             messages.error(request, aluno_form.errors)
