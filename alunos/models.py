@@ -21,20 +21,21 @@ class Aluno(models.Model):
     nome_mae = models.CharField(max_length=150, null=True, blank=True)
     nome_pai = models.CharField(max_length=150, null=True, blank=True)
     cpf = models.CharField(max_length=11, null=False, blank=False)
-    matricula = models.CharField(max_length=6,)
+    matricula = models.CharField(max_length=6)
     sobre = models.TextField(null=True)
     email = models.EmailField()
 
-    def definir_matricula(self, matricula):
-        letras = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'] 
-        numero1 = random.randrange(0,9)
-        numero2 = random.randrange(0,9)
-        numero3 = random.randrange(0,9)
-        letra1 = random.choice(letras)
-        letra2 = random.choice(letras)
-        letra3 = random.choice(letras)
-        matricula = f'{numero1} + {numero2} + {numero3} + {letra1}+ {letra2} + {letra3}'
-        self.matricula = matricula
-        
+    def save(self, *args, **kwargs):
+        self.matricula = self.codigo_matricula()
+        super(Aluno, self).save(*args, **kwargs)
 
-        
+    def codigo_matricula(self):
+        codigo = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 
+                  '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+        c1 = random.choice(codigo)
+        c2 = random.choice(codigo)
+        c3 = random.choice(codigo)
+        c4 = random.choice(codigo)
+        c5 = random.choice(codigo)
+        c6 = random.choice(codigo)
+        return f'{c1}{c2}{c3}{c4}{c5}{c6}'
