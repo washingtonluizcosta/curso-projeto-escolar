@@ -9,7 +9,7 @@ class Aluno(models.Model):
     nascimento = models.DateField(null=False, blank=False)
     sobre = models.TextField(null=True)
     user = models.ForeignKey(User, on_delete=models.PROTECT)
-    sexo = models.CharField(max_length=1, choices={'M': 'Masculino', 'F': 'Feminino', 'O': 'Outro'}, null=False, blank=False)
+    sexo = models.CharField(max_length=20, choices={'M': 'Masculino', 'F': 'Feminino', 'O': 'Outro'}, null=False, blank=False)
     cep = models.CharField(max_length=8, null=False, blank=False)
     pais = models.CharField(max_length=50, null=False, blank=False)
     bairro = models.CharField(max_length=250, null=True, blank=True)
@@ -20,8 +20,8 @@ class Aluno(models.Model):
     endereco = models.CharField(max_length=255, null=False, blank=False)
     nome_mae = models.CharField(max_length=150, null=True, blank=True)
     nome_pai = models.CharField(max_length=150, null=True, blank=True)
-    cpf = models.CharField(max_length=11, unique=True, null=False, blank=False)
-    matricula = models.CharField(max_length=6) 
+    cpf = models.CharField(max_length=11, null=False, blank=False)
+    matricula = models.CharField(max_length=6,)
     sobre = models.TextField(null=True)
     email = models.EmailField()
 
@@ -35,5 +35,6 @@ class Aluno(models.Model):
         letra3 = random.choice(letras)
         matricula = f'{numero1} + {numero2} + {numero3} + {letra1}+ {letra2} + {letra3}'
         self.matricula = matricula
+        
 
         
