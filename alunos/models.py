@@ -25,7 +25,7 @@ class Aluno(models.Model):
     sobre = models.TextField(null=True)
     email = models.EmailField()
 
-   def save(self, *args, **kwargs):
+    def save(self, *args, **kwargs):
         if not self.matricula:
             codigo = self.codigo_matricula()
             while Aluno.objects.filter(matricula = codigo).exists():
