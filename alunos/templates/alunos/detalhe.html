@@ -1,17 +1,21 @@
 {% extends "alunos/base.html" %}
 
-{% block 'titulo' %} Detalhes do Aluno {{ aluno.nome }} {% endblock %}
+{% block 'titulo' %} Meus Dados {{ aluno.nome }} {% endblock %}
 
 {% block 'conteudo' %}
-    <h1>Detalhe</h1>
+    <h1>Meus Dados</h1>
 
-    <h2>Sobre {{ aluno.nome }}</h2>
-
-    {{ aluno.sobre|default_if_none:"" }}
+    <div class="row">
+        <form method="post">
+            {{ form }}
+        </form>
+    </div>
 
     <br>
 
-    <a href="{% url 'listar_alunos' %}">Voltar</a>
-    <a href="{% url 'editar_aluno' aluno.id %}">Editar</a>
-    <a href="{% url 'excluir_aluno' aluno.id %}">Excluir</a>
+    <div class="row">
+        <a href="{% url 'listar_alunos' %}">Voltar</a>
+        <a href="{% url 'editar_aluno' aluno.id %}">Editar</a>
+        <a href="{% url 'excluir_aluno' aluno.id %}">Excluir</a>
+    <div>
 {% endblock %}

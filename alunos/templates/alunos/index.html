@@ -1,36 +1,41 @@
 {% extends "alunos/base.html" %}
 
 {% block 'conteudo' %}
-    <h1>Alunos</h1>
+    <h1>Todos os Alunos</h1>
 
-    <a href="{% url 'criar_aluno' %}">Novo</a>
+    <div class="row">
+        <input type="text" placeholder="Pesquisar Aluno">
+        <a href="{% url 'criar_aluno' %}">Novo</a>
+    </div>
 
-    <table>
-        <thead>
+    <div class="row">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        Nome
+                    </th>
+                    <th>
+                        CPF
+                    </th>
+                    <th>
+                        Sobre
+                    </th>
+                </tr>
+            <thead>
+        {% for a in alunos %}
             <tr>
-                <th>
-                    Nome
-                </th>
-                <th>
-                    Nascimento
-                </th>
-                <th>
-                    Ações
-                </th>
+                <td>
+                    {{ a.nome }}
+                </td>
+                <td>
+                    {{ a.cpf }}
+                </td>
+                <td>
+                    <a href="{% url 'detalhe_aluno' a.id %}">{{ a.sobre }}</a>
+                </td>
             </tr>
-        <thead>
-    {% for a in alunos %}
-        <tr>
-            <td>
-                {{ a.nome }}
-            </td>
-            <td>
-                {{ a.nascimento }}
-            </td>
-            <td>
-                <a href="{% url 'detalhe_aluno' a.id %}">Detalhes</a>
-            </td>
-        </tr>
-    {% endfor %}
-    </table>
+        {% endfor %}
+        </table>
+    </div>
 {% endblock %}

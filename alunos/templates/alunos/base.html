@@ -1,16 +1,91 @@
-{% load static %}
-<html>
-    <head>
-        <title>{% block 'titulo' %}Sistema Escolar{% endblock %}</title>
-        <link rel="stylesheet" href="{% static  'alunos/estilo.css' %}">
-    </head>
-    <body>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G7 School</title>
+    <style>
+        body {
+            background-color: #CF8B1D;
+            margin: 100px;
+             font-family: Arial, sans-serif;
+        }
 
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 40px;
+        }
+
+        .row {
+            display: block;
+            width: 100%;
+        }
+
+        table {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        table tr th {
+            background-color: #cecece;
+            text-align: center;
+        }
+
+        table tr {
+            height: 50px;
+        }
+
+        table, table tr td {
+            border: 1px solid black;
+        }
+
+        .usuario {
+            color: black;
+            background-color: #546747;
+            padding-top: 3px;
+            padding-right: 10px;
+            padding-left: 10px;
+            max-width: 140px;
+            height: 20px;
+            font-weight: bold;
+            font-family: Arial Narrow, sans-serif;
+            font-size: 16px;
+            position: absolute;
+            right: 20px;
+        }
+
+        .box {
+            background-color: #CF8B1D;
+            color: rgb(0, 0, 0);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 180px;
+            max-width: 150px;
+            text-align: center;
+            align-items: center;
+            
+        }
+        .box h2 {
+            font-size: 1.5em;
+        }
+        .box p {
+            margin: 10px ;
+        }
+    </style>
+</head>
+<body>
+    <div class="usuario">
+        <span>{{ request.user.first_name }}</span>
+    </div>
+    
+    <div class="container">
         {% block 'conteudo' %}
-        {% endblock %}
-
-        <footer>
-            Curso de Programação - <a href="{% url 'do_logout' %}">Sair</a>
-        </footer>
-    </body>
+        {% endblock%}
+    </div>
+</body>
 </html>

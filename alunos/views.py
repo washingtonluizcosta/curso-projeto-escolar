@@ -15,8 +15,9 @@ def listar_alunos(request):
 def detalhe_aluno(request, pk):
    
     aluno = Aluno.objects.get(id=pk)
+    form = AlunoForm(instance=aluno)
     # select * from alunos_aluno where id = pk
-    return render(request, 'alunos/detalhe.html', context={'aluno': aluno})
+    return render(request, 'alunos/detalhe.html', context={'aluno': aluno, 'form': form})
 
 @login_required
 def excluir_aluno(request, pk):
