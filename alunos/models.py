@@ -21,21 +21,26 @@ class Aluno(models.Model):
     nome_mae = models.CharField(max_length=150, null=True, blank=True)
     nome_pai = models.CharField(max_length=150, null=True, blank=True)
     cpf = models.CharField(max_length=11, null=False, blank=False)
-    matricula = models.CharField(max_length=6)
+    matricula = models.CharField(max_length=6, blank=True)
     sobre = models.TextField(null=True)
     email = models.EmailField()
 
-    def save(self, *args, **kwargs):
-        self.matricula = self.codigo_matricula()
+   def save(self, *args, **kwargs):
+        if not self.matricula:
+            codigo = self.codigo_matricula()
+            while Aluno.objects.filter(matricula = codigo).exists():
+                codigo = self.codigo_matricula()    
+            self.matricula = codigo
         super(Aluno, self).save(*args, **kwargs)
 
     def codigo_matricula(self):
-        codigo = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 
-                  '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-        c1 = random.choice(codigo)
-        c2 = random.choice(codigo)
-        c3 = random.choice(codigo)
-        c4 = random.choice(codigo)
-        c5 = random.choice(codigo)
-        c6 = random.choice(codigo)
-        return f'{c1}{c2}{c3}{c4}{c5}{c6}'
+        letras = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+        codigo = []
+        codigo.append(random.choice(letras))
+        codigo.append(random.choice(letras))
+        codigo.append(random.choice(letras))
+        codigo.append(random.randrange(0, 10))
+        codigo.append(random.randrange(0, 10))
+        codigo.append(random.randrange(0, 10))
+        random.shuffle(codigo)
+        return f'{codigo[0]}{codigo[1]}{codigo[2]}{codigo[3]}{codigo[4]}{codigo[5]}'
