@@ -6,6 +6,6 @@ class Disciplina(models.Model):
 
 class Turma(models.Model):
     horario = models.TimeField(null=False, blank=False)
-    turno = models.CharField (max_length=10, choices={'Manhã': 'Manhã', 'Tarde': 'Tarde', 'Noite': 'Noite'}, null=False, blank=False)
+    turno = models.CharField (max_length=10, choices={'Manha': 'Manha', 'Tarde': 'Tarde', 'Noite': 'Noite'}, null=False, blank=False)
     data_inicio = models.DateField(null=False, blank=False)
     data_conclusao = models.DateField(null=False, blank=False)

@@ -35,3 +35,4 @@ def do_login(request):
 def do_logout(request):
     logout(request)
     return redirect('do_login')
+
